@@ -49,7 +49,9 @@ func main() {
 
 	route.NotFoundHandler = http.HandlerFunc(notFound)
 
-	handler := cors.Default().Handler(route)
+	// handler := cors.Default().Handler(route)
+	handler := cors.AllowAll().Handler(route)
+
 	if err := http.ListenAndServe(":"+port, handler); err != nil {
 		fmt.Print(host)
 		log.Log().Err(err)
