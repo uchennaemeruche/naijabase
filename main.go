@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/ichtrojan/horus"
 	"github.com/joho/godotenv"
 	"github.com/rs/cors"
 	"github.com/rs/zerolog"
@@ -29,41 +30,56 @@ func main() {
 	port, existPort := os.LookupEnv("PORT")
 
 	host, existHost := os.LookupEnv("HOST")
+
 	if !existPort || !existHost {
 		log.Fatal().Msg("Port or Host not set in environment variable")
 		log.Error().Err(errors.New("Port or Host not set in environment variable")).Msg("")
+	}
+
+	listener, err := horus.Init("mysql", horus.Config{
+		DbName:    os.Getenv("DB_NAME"),
+		DbHost:    os.Getenv("DB_HOST"),
+		DbPssword: os.Getenv("DB_PASSWORD"),
+		DbUser:    os.Getenv("DB_USER"),
+		DbPort:    os.Getenv("DB_PORT"),
+	})
+
+	if err != nil {
+		log.Fatal().Msg(err.Error())
 	}
 
 	route := mux.NewRouter()
 
 	route.PathPrefix("/logo/").Handler(http.StripPrefix("/logo/", http.FileServer(http.Dir("./logos"))))
 
-	route.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
+	route.HandleFunc("/", listener.Watch(func(res http.ResponseWriter, req *http.Request) {
 		res.Header().Set("Content-Type", "application/json")
 
 		banks := getBanks(host)
 
 		_ = json.NewEncoder(res).Encode(banks)
 
-	})
+	}))
 
-	route.NotFoundHandler = http.HandlerFunc(notFound)
+	route.NotFoundHandler = http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+		res.WriteHeader(http.StatusNotFound)
+
+		res.Header().Set("Content-Type", "application/json")
+
+		_ = json.NewEncoder(res).Encode(Error{Message: "Oops!! Unavailable route"})
+	})
 
 	// handler := cors.Default().Handler(route)
 	handler := cors.AllowAll().Handler(route)
+
+	if err := listener.Serve(":8081", "12345"); err != nil {
+		log.Fatal().Err(err)
+	}
 
 	if err := http.ListenAndServe(":"+port, handler); err != nil {
 		fmt.Print(host)
 		log.Log().Err(err)
 	}
-}
-
-func notFound(res http.ResponseWriter, req *http.Request) {
-	res.WriteHeader(http.StatusNotFound)
-
-	res.Header().Set("Content-Type", "application/json")
-
-	_ = json.NewEncoder(res).Encode(Error{Message: "Oops!! Unavailable route"})
 }
 
 func GetUrl(slug string) string {
