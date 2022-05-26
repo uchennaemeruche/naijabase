@@ -52,11 +52,18 @@ func main() {
 		_ = json.NewEncoder(res).Encode(greeting)
 
 	})
-	route.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
+	route.HandleFunc("/banks", func(res http.ResponseWriter, req *http.Request) {
 		res.Header().Set("Content-Type", "application/json")
 
 		banks := getBanks(host)
 		_ = json.NewEncoder(res).Encode(banks)
+
+	})
+	route.HandleFunc("/schools", func(res http.ResponseWriter, req *http.Request) {
+		res.Header().Set("Content-Type", "application/json")
+
+		schools := "getSchools(host)"
+		_ = json.NewEncoder(res).Encode(schools)
 
 	})
 
