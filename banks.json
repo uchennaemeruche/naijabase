@@ -1,199 +1,345 @@
 [{
         "name": "Access Bank",
         "slug": "access-bank",
-        "code": "044",
-        "ussd": "*901#"
+        "class": "commercial",
+        "ussd": "*901#",
+        "sort_code": "044",
+        "swift_code": "ABNGNGLA",
+        "website": "https://www.accessbankplc.com"
     },
     {
         "name": "Access Bank (Diamond)",
         "slug": "access-bank-diamond",
-        "code": "063",
-        "ussd": "*426#"
+        "class": "commercial",
+        "ussd": "*426#",
+        "sort_code": "063",
+        "swift_code": "ABNGNGLA",
+        "website": "https://www.accessbankplc.com"
     }, {
         "name": "ALAT by WEMA",
         "slug": "alat-by-wema",
-        "code": "035A",
-
-        "ussd": "*945*100#"
+        "class": "digital",
+        "ussd": "*945*100#",
+        "sort_code": "035A",
+        "swift_code": "WEMANGLA",
+        "website": "https://online.alat.ng"
     }, {
         "name": "ASO Savings and Loans",
         "slug": "asosavings",
-        "code": "401",
-        "ussd": ""
+        "class": "mortgage",
+        "ussd": "",
+        "sort_code": "401",
+        "swift_code": "",
+        "website": "https://www.asoplc.com"
     }, {
         "name": "Bowen Microfinance Bank",
         "slug": "bowen-microfinance-bank",
-        "code": "50931",
-        "ussd": ""
+        "class": "microfinance",
+        "ussd": "*614*314#",
+        "sort_code": "50931",
+        "swift_code": "",
+        "website": "https://www.bowenmfb.org"
     }, {
         "name": "CEMCS Microfinance Bank",
         "slug": "cemcs-microfinance-bank",
-        "code": "50823",
-        "ussd": ""
+        "class": "microfinance",
+        "ussd": "",
+        "sort_code": "50823",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Citibank Nigeria",
         "slug": "citibank-nigeria",
-        "code": "023",
-        "ussd": ""
-    }, {
+        "class": "commercial",
+        "ussd": "",
+        "sort_code": "023",
+        "swift_code": "CITINGLA",
+        "website": ""
+    },
+    {
+        "name": "Coronation Merchant Bank",
+        "slug": "coronaction-merchant-bank",
+        "class": "merchant",
+        "ussd": "",
+        "sort_code": "",
+        "swift_code": "",
+        "website": ""
+    },
+    {
         "name": "Ecobank Nigeria",
         "slug": "ecobank-nigeria",
-        "code": "050",
-        "ussd": "*326#"
+        "class": "commercial",
+        "ussd": "*326#",
+        "sort_code": "050",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Ekondo Microfinance Bank",
         "slug": "ekondo-microfinance-bank",
-        "code": "562",
-        "ussd": "*540*178#"
+        "class": "",
+        "ussd": "*540*178#",
+        "sort_code": "562",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Fidelity Bank",
         "slug": "fidelity-bank",
-        "code": "070",
-        "ussd": "*770#"
+        "class": "commercial",
+        "ussd": "*770#",
+        "sort_code": "070",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "First Bank of Nigeria",
         "slug": "first-bank-of-nigeria",
-        "code": "011",
-        "ussd": "*894#"
+        "class": "commercial",
+        "ussd": "*894#",
+        "sort_code": "011",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "First City Monument Bank",
         "slug": "first-city-monument-bank",
-        "code": "214",
-        "ussd": "*329#"
+        "class": "commercial",
+        "ussd": "*329#",
+        "sort_code": "214",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Globus Bank",
         "slug": "globus-bank",
-        "code": "00103",
-        "ussd": "*989#"
+        "class": "commercial",
+        "ussd": "*989#",
+        "sort_code": "00103",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Guaranty Trust Bank",
         "slug": "guaranty-trust-bank",
-        "code": "058",
-        "ussd": "*737#"
+        "class": "commercial",
+        "ussd": "*737#",
+        "sort_code": "058",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Hasal Microfinance Bank",
         "slug": "hasal-microfinance-bank",
-        "code": "50383",
-        "ussd": "*322*127#"
+        "class": "",
+        "ussd": "*322*127#",
+        "sort_code": "50383",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Heritage Bank",
         "slug": "heritage-bank",
-        "code": "030",
-        "ussd": "*322#"
+        "class": "commercial",
+        "ussd": "*322#",
+        "sort_code": "030",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Jaiz Bank",
         "slug": "jaiz-bank",
-        "code": "301",
-        "ussd": "*389*301#"
+        "class": "",
+        "ussd": "*389*301#",
+        "sort_code": "301",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Keystone Bank",
         "slug": "keystone-bank",
-        "code": "082",
-        "ussd": "*7111#"
+        "class": "commercial",
+        "ussd": "*7111#",
+        "sort_code": "082",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Kuda Bank",
         "slug": "kuda-bank",
-        "code": "50211",
-        "ussd": ""
-    }, {
+        "class": "",
+        "ussd": "",
+        "sort_code": "50211",
+        "swift_code": "",
+        "website": ""
+    },
+    {
+        "name": "NOVA Merchant Bank",
+        "slug": "nova-merchant-bank",
+        "class": "merchant",
+        "ussd": "",
+        "sort_code": "",
+        "swift_code": "",
+        "website": ""
+    },
+    {
         "name": "One Finance",
         "slug": "one-finance",
-        "code": "565",
-        "ussd": "*1303#"
+        "class": "",
+        "ussd": "*1303#",
+        "sort_code": "565",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Parallex Bank",
         "slug": "parallex-bank",
-        "code": "526",
-        "ussd": "*322*318*0#"
+        "class": "",
+        "ussd": "*322*318*0#",
+        "sort_code": "526",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "PayCom",
         "slug": "paycom",
-        "code": "100004",
-        "ussd": "*955#"
+        "class": "",
+        "ussd": "*955#",
+        "sort_code": "100004",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Polaris Bank",
         "slug": "polaris-bank",
-        "code": "076",
-        "ussd": "*833#"
-    }, {
+        "class": "commercial",
+        "ussd": "*833#",
+        "sort_code": "076",
+        "swift_code": "",
+        "website": ""
+    },
+    {
         "name": "Providus Bank",
         "slug": "providus-bank",
-        "code": "101",
-        "ussd": ""
-    }, {
+        "class": "commercial",
+        "ussd": "",
+        "sort_code": "101",
+        "swift_code": "",
+        "website": ""
+    },
+    {
+        "name": "Rand Merchant Bank",
+        "slug": "rand-merchant-bank",
+        "class": "merchant",
+        "ussd": "",
+        "sort_code": "",
+        "swift_code": "",
+        "website": ""
+    },
+    {
         "name": "Rubies MFB",
         "slug": "rubies-mfb",
-        "code": "125",
-        "ussd": "*7797#"
+        "class": "microfinance",
+        "ussd": "*7797#",
+        "sort_code": "125",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Sparkle Microfinance Bank",
         "slug": "sparkle-microfinance-bank",
-        "code": "51310",
-        "ussd": ""
+        "class": "microfinance",
+        "ussd": "",
+        "sort_code": "51310",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Stanbic IBTC Bank",
         "slug": "stanbic-ibtc-bank",
-        "code": "221",
-        "ussd": "*909#"
+        "class": "commercial",
+        "ussd": "*909#",
+        "sort_code": "221",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Standard Chartered Bank",
         "slug": "standard-chartered-bank",
-        "code": "068",
-        "ussd": ""
+        "class": "commercial",
+        "ussd": "",
+        "sort_code": "068",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Sterling Bank",
         "slug": "sterling-bank",
-        "code": "232",
-        "ussd": "*822#"
+        "class": "commercial",
+        "ussd": "*822#",
+        "sort_code": "232",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Suntrust Bank",
         "slug": "suntrust-bank",
-        "code": "100",
-        "ussd": "*5230#"
+        "class": "commercial",
+        "ussd": "*5230#",
+        "sort_code": "100",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "TAJ Bank",
         "slug": "taj-bank",
-        "code": "302",
-        "ussd": "*898#"
+        "class": "",
+        "ussd": "*898#",
+        "sort_code": "302",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "TCF MFB",
         "slug": "tcf-mfb",
-        "code": "51211",
-        "ussd": "*908#"
+        "class": "",
+        "ussd": "*908#",
+        "sort_code": "51211",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Titan Trust Bank",
         "slug": "titan-trust-bank",
-        "code": "102",
-        "ussd": "*922#"
+        "class": "commercial",
+        "ussd": "*922#",
+        "sort_code": "102",
+        "swift_code": "TTRUNGLAXXX"
     }, {
         "name": "Union Bank of Nigeria",
         "slug": "union-bank-of-nigeria",
-        "code": "032",
-        "ussd": "*826#"
+        "class": "commercial",
+        "ussd": "*826#",
+        "sort_code": "032",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "United Bank For Africa",
         "slug": "united-bank-for-africa",
-        "code": "033",
-        "ussd": "*919#"
+        "class": "commercial",
+        "ussd": "*919#",
+        "sort_code": "033",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Unity Bank",
         "slug": "unity-bank",
-        "code": "215",
-        "ussd": "*7799#"
+        "class": "commercial",
+        "ussd": "*7799#",
+        "sort_code": "215",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "VFD",
         "slug": "vfd",
-        "code": "566",
-        "ussd": ""
+        "class": "",
+        "ussd": "",
+        "sort_code": "566",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Wema Bank",
         "slug": "wema-bank",
-        "code": "035",
-        "ussd": "*945#"
+        "class": "commercial",
+        "ussd": "*945#",
+        "sort_code": "035",
+        "swift_code": "",
+        "website": ""
     }, {
         "name": "Zenith Bank",
         "slug": "zenith-bank",
-        "code": "057",
-        "ussd": "*966#"
+        "class": "commercial",
+        "ussd": "*966#",
+        "sort_code": "057",
+        "swift_code": "",
+        "website": ""
     }
 ]

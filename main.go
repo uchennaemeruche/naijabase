@@ -68,52 +68,10 @@ func main() {
 		_ = json.NewEncoder(res).Encode(Error{Message: "Oops!! Unavailable route"})
 	})
 
-	// handler := cors.Default().Handler(route)
 	handler := cors.AllowAll().Handler(route)
 
 	if err := http.ListenAndServe(":"+port, handler); err != nil {
 		fmt.Print(host)
 		log.Log().Err(err)
 	}
-}
-
-func GetUrl(bankSlug string) string {
-	var files []string
-	f, err := os.Open("./bank-logos")
-	if err != nil {
-		log.Log().Err(err)
-	}
-
-	fileInfo, err := f.Readdir(0)
-
-	_ = f.Close()
-
-	if err != nil {
-		log.Log().Err(err)
-	}
-
-	for _, file := range fileInfo {
-		if file.Name() == ".DS_store" {
-			continue
-		}
-		files = append(files, file.Name())
-	}
-
-	_, found := findFile(files, bankSlug+".png")
-
-	if found {
-		return bankSlug
-	}
-
-	return "default-image"
-}
-
-func findFile(slice []string, value string) (int, bool) {
-	for i, item := range slice {
-		if item == value {
-			return i, true
-		}
-
-	}
-	return -1, false
 }

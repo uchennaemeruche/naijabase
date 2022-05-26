@@ -1,0 +1,16 @@
+707 	Abbey Mortgage Bank
+704 	AG Mortgage Bank
+599 	Coronation Merchant Bank  	    CMBBNGLA
+232 	Equitorial Trust Bank
+084 	Enterprise Bank
+232 	Equitorial Trust Bank
+085     Finbank
+601 	FSDH Merchant Bank
+706 	Gateway Mortgage Bank
+415 	Imperial Homes Mortgage Bank
+402 	Jubilee Life Mortgage Bank
+
+Bank clases:
+1. commercial
+2. Mortgage
+3. microfinance

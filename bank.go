@@ -8,18 +8,20 @@ import (
 )
 
 type BankJSON struct {
-	Name string `json:"name"`
-	Slug string `json:"slug"`
-	Code string `json:"code"`
-	USSD string `json:"ussd"`
+	Name      string `json:"name"`
+	Slug      string `json:"slug"`
+	SortCode  string `json:"sort_code"`
+	USSDCode  string `json:"ussd"`
+	SwiftCode string `json:"swift_code"`
 }
 
 type Bank struct {
-	Name string `json:"name"`
-	Slug string `json:"slug"`
-	Code string `json:"code"`
-	USSD string `json:"ussd"`
-	Logo string `json:"logo"`
+	Name      string `json:"name"`
+	Slug      string `json:"slug"`
+	SortCode  string `json:"sort_code"`
+	USSDCode  string `json:"ussd_code"`
+	SwiftCode string `json:"swift_code"`
+	Logo      string `json:"logo"`
 }
 
 func SayHello(name string) string {
@@ -41,11 +43,12 @@ func getBanks(host string) []Bank {
 	var newBanks []Bank
 	for _, bank := range banks {
 		newBanks = append(newBanks, Bank{
-			Name: bank.Name,
-			Slug: bank.Slug,
-			Code: bank.Code,
-			USSD: bank.USSD,
-			Logo: host + "/logo/" + GetUrl(bank.Slug) + ".png",
+			Name:      bank.Name,
+			Slug:      bank.Slug,
+			SortCode:  bank.SortCode,
+			SwiftCode: bank.SwiftCode,
+			USSDCode:  bank.USSDCode,
+			Logo:      host + "/logo/" + GetLogoUrl(bank.Slug) + ".png",
 		})
 	}
 
