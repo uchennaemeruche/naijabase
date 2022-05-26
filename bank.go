@@ -22,7 +22,12 @@ type Bank struct {
 	Logo string `json:"logo"`
 }
 
+func SayHello(name string) string {
+	return "Hello " + name
+}
+
 func getBanks(host string) []Bank {
+	log.Info().Msg("Called getBanks")
 	bankJson, err := ioutil.ReadFile("./banks.json")
 	if err != nil {
 		log.Log().Err(err)

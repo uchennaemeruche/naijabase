@@ -8,7 +8,6 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
-	"github.com/ichtrojan/horus"
 	"github.com/joho/godotenv"
 	"github.com/rs/cors"
 	"github.com/rs/zerolog"
@@ -36,13 +35,7 @@ func main() {
 		log.Error().Err(errors.New("Port or Host not set in environment variable")).Msg("")
 	}
 
-	listener, err := horus.Init("mysql", horus.Config{
-		DbName:    os.Getenv("DB_NAME"),
-		DbHost:    os.Getenv("DB_HOST"),
-		DbPssword: os.Getenv("DB_PASSWORD"),
-		DbUser:    os.Getenv("DB_USER"),
-		DbPort:    os.Getenv("DB_PORT"),
-	})
+	log.Info().Msg(port)
 
 	if err != nil {
 		log.Fatal().Msg(err.Error())
@@ -52,14 +45,20 @@ func main() {
 
 	route.PathPrefix("/logo/").Handler(http.StripPrefix("/logo/", http.FileServer(http.Dir("./logos"))))
 
-	route.HandleFunc("/", listener.Watch(func(res http.ResponseWriter, req *http.Request) {
+	route.HandleFunc("/hello", func(res http.ResponseWriter, req *http.Request) {
+		res.Header().Set("Content-Type", "application/json")
+
+		greeting := SayHello("Uchenna")
+		_ = json.NewEncoder(res).Encode(greeting)
+
+	})
+	route.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
 		res.Header().Set("Content-Type", "application/json")
 
 		banks := getBanks(host)
-
 		_ = json.NewEncoder(res).Encode(banks)
 
-	}))
+	})
 
 	route.NotFoundHandler = http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		res.WriteHeader(http.StatusNotFound)
@@ -72,19 +71,15 @@ func main() {
 	// handler := cors.Default().Handler(route)
 	handler := cors.AllowAll().Handler(route)
 
-	if err := listener.Serve(":8081", "12345"); err != nil {
-		log.Fatal().Err(err)
-	}
-
 	if err := http.ListenAndServe(":"+port, handler); err != nil {
 		fmt.Print(host)
 		log.Log().Err(err)
 	}
 }
 
-func GetUrl(slug string) string {
+func GetUrl(bankSlug string) string {
 	var files []string
-	f, err := os.Open("./logos")
+	f, err := os.Open("./bank-logos")
 	if err != nil {
 		log.Log().Err(err)
 	}
@@ -104,10 +99,10 @@ func GetUrl(slug string) string {
 		files = append(files, file.Name())
 	}
 
-	_, found := findFile(files, slug+".png")
+	_, found := findFile(files, bankSlug+".png")
 
 	if found {
-		return slug
+		return bankSlug
 	}
 
 	return "default-image"
