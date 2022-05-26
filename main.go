@@ -62,7 +62,7 @@ func main() {
 	route.HandleFunc("/schools", func(res http.ResponseWriter, req *http.Request) {
 		res.Header().Set("Content-Type", "application/json")
 
-		schools := "getSchools(host)"
+		schools := getSchools(host)
 		_ = json.NewEncoder(res).Encode(schools)
 
 	})

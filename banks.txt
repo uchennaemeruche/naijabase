@@ -14,3 +14,4 @@ Bank clases:
 1. commercial
 2. Mortgage
 3. microfinance
+4. digital

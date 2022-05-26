@@ -1,0 +1,15 @@
+[{
+        "name": "University of Nigeria",
+        "slug": "university-of-nigeria",
+        "location": "Nsukka",
+        "address": "Nsukka, Enugu State",
+        "ranking": "4"
+    },
+    {
+        "name": "University of Abuja",
+        "slug": "university-of-abuja",
+        "location": "Abuja",
+        "address": "Abuja",
+        "ranking": "3"
+    }
+]

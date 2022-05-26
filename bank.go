@@ -10,17 +10,21 @@ import (
 type BankJSON struct {
 	Name      string `json:"name"`
 	Slug      string `json:"slug"`
+	Class     string `json:"class"`
 	SortCode  string `json:"sort_code"`
 	USSDCode  string `json:"ussd"`
 	SwiftCode string `json:"swift_code"`
+	Website   string `json:"website"`
 }
 
 type Bank struct {
 	Name      string `json:"name"`
 	Slug      string `json:"slug"`
+	Class     string `json:"class"`
 	SortCode  string `json:"sort_code"`
 	USSDCode  string `json:"ussd_code"`
 	SwiftCode string `json:"swift_code"`
+	Website   string `json:"website"`
 	Logo      string `json:"logo"`
 }
 
@@ -29,6 +33,7 @@ func SayHello(name string) string {
 }
 
 func getBanks(host string) []Bank {
+	var folder = "./bank-logos"
 	log.Info().Msg("Called getBanks")
 	bankJson, err := ioutil.ReadFile("./banks.json")
 	if err != nil {
@@ -45,10 +50,12 @@ func getBanks(host string) []Bank {
 		newBanks = append(newBanks, Bank{
 			Name:      bank.Name,
 			Slug:      bank.Slug,
+			Class:     bank.Class,
 			SortCode:  bank.SortCode,
 			SwiftCode: bank.SwiftCode,
 			USSDCode:  bank.USSDCode,
-			Logo:      host + "/logo/" + GetLogoUrl(bank.Slug) + ".png",
+			Website:   bank.Website,
+			Logo:      host + "/logo/" + GetLogoUrl(folder, bank.Slug) + ".png",
 		})
 	}
 

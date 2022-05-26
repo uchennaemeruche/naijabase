@@ -6,9 +6,9 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func GetLogoUrl(bankSlug string) string {
+func GetLogoUrl(folder, slug string) string {
 	var files []string
-	f, err := os.Open("./bank-logos")
+	f, err := os.Open(folder)
 	if err != nil {
 		log.Log().Err(err)
 	}
@@ -28,13 +28,13 @@ func GetLogoUrl(bankSlug string) string {
 		files = append(files, file.Name())
 	}
 
-	_, fileExist := findFile(files, bankSlug+".png")
+	_, fileExist := findFile(files, slug+".png")
 
 	if !fileExist {
 		return "image-placeholder"
 	}
 
-	return bankSlug
+	return slug
 }
 
 func findFile(slice []string, value string) (int, bool) {
