@@ -1,15 +1,12 @@
 package main
 
 import (
-	"encoding/json"
 	"errors"
-	"fmt"
-	"net/http"
 	"os"
 
-	"github.com/gorilla/mux"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
-	"github.com/rs/cors"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
@@ -41,44 +38,35 @@ func main() {
 		log.Fatal().Msg(err.Error())
 	}
 
-	route := mux.NewRouter()
+	app := fiber.New()
 
-	route.PathPrefix("/logo/").Handler(http.StripPrefix("/logo/", http.FileServer(http.Dir("./logos"))))
+	app.Static("/logo/", "./public")
 
-	route.HandleFunc("/hello", func(res http.ResponseWriter, req *http.Request) {
-		res.Header().Set("Content-Type", "application/json")
+	app.Use(cors.New())
 
-		greeting := SayHello("Uchenna")
-		_ = json.NewEncoder(res).Encode(greeting)
+	app.Get("/hello", func(c *fiber.Ctx) error {
+		greeting := SayHello("Uchenna" + host)
 
+		return c.JSON(greeting)
 	})
-	route.HandleFunc("/banks", func(res http.ResponseWriter, req *http.Request) {
-		res.Header().Set("Content-Type", "application/json")
 
+	app.Get("/banks", func(c *fiber.Ctx) error {
 		banks := getBanks(host)
-		_ = json.NewEncoder(res).Encode(banks)
-
+		return c.Status(fiber.StatusOK).JSON(banks)
 	})
-	route.HandleFunc("/schools", func(res http.ResponseWriter, req *http.Request) {
-		res.Header().Set("Content-Type", "application/json")
 
+	app.Get("/schools", func(c *fiber.Ctx) error {
 		schools := getSchools(host)
-		_ = json.NewEncoder(res).Encode(schools)
-
+		return c.Status(fiber.StatusOK).JSON(schools)
 	})
 
-	route.NotFoundHandler = http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
-		res.WriteHeader(http.StatusNotFound)
+	// app.Use(logger.New(logger.Config{ // add Logger middleware with config
+	//     Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
+	// }))
 
-		res.Header().Set("Content-Type", "application/json")
-
-		_ = json.NewEncoder(res).Encode(Error{Message: "Oops!! Unavailable route"})
-	})
-
-	handler := cors.AllowAll().Handler(route)
-
-	if err := http.ListenAndServe(":"+port, handler); err != nil {
-		fmt.Print(host)
+	if err := app.Listen(":" + port); err != nil {
+		log.Info().Msg(host)
 		log.Log().Err(err)
 	}
+
 }
